@@ -3,7 +3,10 @@ const menuButton = document.querySelector(".menu-button");
 const showcaseImage = document.querySelector("#showcase-image");
 const showcaseTitle = document.querySelector("#showcase-title");
 const showcaseText = document.querySelector("#showcase-text");
+const showcase = document.querySelector(".showcase");
 const showcaseButtons = document.querySelectorAll(".showcase-tabs button");
+let showcaseIndex = 0;
+let showcaseTimer;
 
 const screens = {
   "script-factory": {
@@ -57,15 +60,48 @@ menuButton?.addEventListener("click", () => {
 
 showcaseButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const key = button.dataset.screen;
-    const next = screens[key];
-    if (!next) return;
-
-    showcaseButtons.forEach((item) => item.classList.remove("active"));
-    button.classList.add("active");
-    showcaseTitle.textContent = next.title;
-    showcaseText.textContent = next.text;
-    showcaseImage.src = next.image;
-    showcaseImage.alt = next.alt;
+    const index = [...showcaseButtons].indexOf(button);
+    selectShowcase(index);
+    restartShowcaseCarousel();
   });
 });
+
+function selectShowcase(index) {
+  const button = showcaseButtons[index];
+  const key = button?.dataset.screen;
+  const next = screens[key];
+  if (!button || !next) return;
+
+  showcaseIndex = index;
+  showcaseButtons.forEach((item) => item.classList.remove("active"));
+  button.classList.add("active");
+  showcaseImage.classList.remove("is-changing");
+  requestAnimationFrame(() => showcaseImage.classList.add("is-changing"));
+  showcaseTitle.textContent = next.title;
+  showcaseText.textContent = next.text;
+  showcaseImage.src = next.image;
+  showcaseImage.alt = next.alt;
+}
+
+function startShowcaseCarousel() {
+  if (!showcaseButtons.length) return;
+  showcaseTimer = window.setInterval(() => {
+    selectShowcase((showcaseIndex + 1) % showcaseButtons.length);
+  }, 4200);
+}
+
+function stopShowcaseCarousel() {
+  window.clearInterval(showcaseTimer);
+}
+
+function restartShowcaseCarousel() {
+  stopShowcaseCarousel();
+  startShowcaseCarousel();
+}
+
+showcase?.addEventListener("mouseenter", stopShowcaseCarousel);
+showcase?.addEventListener("mouseleave", startShowcaseCarousel);
+showcase?.addEventListener("focusin", stopShowcaseCarousel);
+showcase?.addEventListener("focusout", startShowcaseCarousel);
+
+startShowcaseCarousel();

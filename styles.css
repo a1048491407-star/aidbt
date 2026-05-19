@@ -438,6 +438,25 @@ p {
   min-height: 360px;
 }
 
+.screen-frame.large img {
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.screen-frame.large img.is-changing {
+  animation: showcaseFade 420ms ease;
+}
+
+@keyframes showcaseFade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .product-tour {
   background:
     linear-gradient(180deg, rgba(35, 214, 200, 0.08), transparent 18rem),
