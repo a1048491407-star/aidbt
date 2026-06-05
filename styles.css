@@ -585,6 +585,195 @@ details p {
   color: var(--text);
 }
 
+.download-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(53, 126, 245, 0.16), transparent 34rem),
+    linear-gradient(180deg, #070a0f, #0a1018 70%, #070a0f);
+}
+
+.download-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76px;
+  padding: 14px clamp(18px, 5vw, 72px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 10, 15, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.back-link {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.download-main {
+  width: min(1120px, calc(100% - 36px));
+  min-height: calc(100vh - 144px);
+  margin: 0 auto;
+  padding: clamp(72px, 9vw, 124px) 0 72px;
+}
+
+.download-intro {
+  max-width: 760px;
+  margin-bottom: 48px;
+  padding: 0;
+}
+
+.download-intro h1 {
+  margin-bottom: 20px;
+  font-size: clamp(48px, 7vw, 88px);
+}
+
+.download-intro > p:last-child {
+  max-width: 680px;
+  font-size: 18px;
+}
+
+.platform-selector {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0;
+}
+
+.platform-panel {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 30px;
+  min-height: 440px;
+  padding: clamp(24px, 3vw, 38px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    var(--panel);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+}
+
+.platform-panel.is-recommended {
+  border-color: rgba(35, 214, 200, 0.58);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(35, 214, 200, 0.12);
+}
+
+.platform-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 54px;
+}
+
+.platform-symbol {
+  display: grid;
+  grid-template-columns: repeat(2, 22px);
+  grid-template-rows: repeat(2, 22px);
+  gap: 3px;
+  transform: skewY(-4deg);
+}
+
+.platform-symbol i {
+  display: block;
+  background: var(--blue);
+}
+
+.apple-symbol {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  color: var(--text);
+}
+
+.recommended-badge {
+  min-height: 28px;
+  padding: 5px 10px;
+  border: 1px solid rgba(35, 214, 200, 0.34);
+  border-radius: 8px;
+  background: rgba(35, 214, 200, 0.1);
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.platform-kicker {
+  margin-bottom: 8px;
+  color: var(--cyan);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.platform-panel h2 {
+  margin-bottom: 12px;
+  font-size: clamp(32px, 4vw, 48px);
+}
+
+.platform-description {
+  min-height: 56px;
+  margin-bottom: 0;
+}
+
+.release-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.release-meta div {
+  padding: 16px 10px;
+  border-right: 1px solid var(--line);
+}
+
+.release-meta div:last-child {
+  border-right: 0;
+}
+
+.release-meta dt {
+  margin-bottom: 6px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.release-meta dd {
+  margin: 0;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.platform-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: end;
+  min-height: 52px;
+  padding: 0 20px;
+  border-radius: 8px;
+  background: var(--cyan);
+  color: #031014;
+  font-weight: 800;
+  box-shadow: 0 14px 40px rgba(35, 214, 200, 0.2);
+}
+
+.platform-download:hover {
+  filter: brightness(1.06);
+}
+
+.download-note {
+  margin: 28px 0 0;
+  text-align: center;
+  font-size: 13px;
+}
+
+.download-footer {
+  min-height: 68px;
+}
+
 @media (max-width: 1080px) {
   .hero,
   .showcase,
@@ -668,5 +857,29 @@ details p {
 
   .site-footer {
     display: grid;
+  }
+
+  .download-header {
+    min-height: 68px;
+  }
+
+  .download-header .brand small {
+    display: none;
+  }
+
+  .download-main {
+    padding-top: 56px;
+  }
+
+  .platform-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .platform-panel {
+    min-height: auto;
+  }
+
+  .release-meta {
+    font-size: 14px;
   }
 }
